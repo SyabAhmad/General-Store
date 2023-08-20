@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 const AddItem = () => {
   const [productName, setProductName] = useState("");
   const [productPrice, setproductPrice] = useState("");
@@ -8,7 +9,25 @@ const AddItem = () => {
   const [productDetails, setProductDetails] = useState("");
   const [quantityType, setQuantityType] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [formData, setFormData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const handleAddProduct = async () => {
+    try {
+      await axios.post("http://localhost/store/addProduct.php", {
+        productName,
+        productPrice,
+        productActualPrice,
+        productDetails,
+        quantityType,
+        quantity,
+        formData,
+        errorMessage,
+      });
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+  };
 
   const handleNameChange = (e) => {
     setErrorMessage("");
@@ -52,13 +71,30 @@ const AddItem = () => {
       setErrorMessage("Prices Should be valid Number");
     } else {
       console.log("success");
-      setErrorMessage("");
-      setProductActualPrice("");
-      setProductDetails("");
-      setProductName("");
-      setQuantity("");
-      setQuantityType("");
-      setproductPrice("");
+
+      try {
+        const newProduct = [
+          productName,
+          productPrice,
+          productActualPrice,
+          productDetails,
+          quantity,
+          quantityType,
+        ];
+
+        setFormData([...formData, newProduct]);
+        handleAddProduct();
+        setErrorMessage("");
+        setProductActualPrice("");
+        setProductDetails("");
+        setProductName("");
+        setQuantity("");
+        setQuantityType("");
+        setproductPrice("");
+        console.log(formData);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
