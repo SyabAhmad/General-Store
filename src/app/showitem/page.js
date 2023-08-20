@@ -1,7 +1,13 @@
 import React from "react";
-
+import ShowItemList from "../Components/ShowItemList";
 const page = () => {
-  return <div>page</div>;
+  return (
+    <>
+      <div>
+        <ShowItemList />
+      </div>
+    </>
+  );
 };
 
 export default page;

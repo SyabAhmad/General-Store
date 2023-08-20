@@ -53,7 +53,23 @@ const AddItem = () => {
     } else {
       console.log("success");
       setErrorMessage("");
+      setProductActualPrice("");
+      setProductDetails("");
+      setProductName("");
+      setQuantity("");
+      setQuantityType("");
+      setproductPrice("");
     }
+  };
+
+  const onClear = () => {
+    setErrorMessage("");
+    setProductActualPrice("");
+    setProductDetails("");
+    setProductName("");
+    setQuantity("");
+    setQuantityType("");
+    setproductPrice("");
   };
   return (
     <>
@@ -63,7 +79,6 @@ const AddItem = () => {
         {/* Form */}
         <form className="flex flex-col items-center">
           <label htmlFor="title">Name of The Product:</label>
-
           <input
             className="border rounded-lg p-2 "
             type="text"
@@ -74,7 +89,6 @@ const AddItem = () => {
           />
           <br />
           <label htmlFor="title">Price of The Product:</label>
-
           <input
             className="border rounded-lg p-2"
             type="text"
@@ -85,7 +99,6 @@ const AddItem = () => {
           />
           <br />
           <label htmlFor="title">Actual Price of The Product:</label>
-
           <input
             className="border rounded-lg p-2"
             type="text"
@@ -113,6 +126,7 @@ const AddItem = () => {
               value={quantityType}
               onChange={handleQuantityType}
             >
+              <option value="">Select</option>
               <option value="KG">Kilo Gram</option>
               <option value="G">Gram</option>
               <option value="MG">Milli Gram</option>
@@ -121,7 +135,6 @@ const AddItem = () => {
           </div>
           <br />
           <label htmlFor="title">Details of The Product:</label>
-
           <textarea
             className="border rounded-lg p-2"
             type="text"
@@ -131,18 +144,28 @@ const AddItem = () => {
             onChange={handleDetailsChange}
           ></textarea>
           <br />
-
           <p className="text-red-600">
             {"*"} {errorMessage}
           </p>
-
-          <input
-            type="Submit"
-            name="button"
-            id="button"
-            onClick={OnSubmit}
-            className="p-3 border rounded-xl hover:bg-blue-500 hover:text-white transition .2s ease-in-out"
-          />
+          <div className="flex gap-10">
+            <input
+              type="Submit"
+              name="button"
+              id="button"
+              onClick={OnSubmit}
+              className="p-3 border rounded-xl hover:bg-blue-500 hover:text-white transition .2s ease-in-out"
+            />
+            <button
+              type="clear"
+              name="button"
+              id="button"
+              onClick={onClear}
+              className="p-3 border rounded-xl hover:bg-blue-500 hover:text-white transition .2s ease-in-out"
+            >
+              {" "}
+              Clear
+            </button>
+          </div>
         </form>
       </div>
     </>
