@@ -4,10 +4,10 @@ import { useState } from "react";
 const AddItem = () => {
   const [productName, setProductName] = useState("");
   const [productPrice, setproductPrice] = useState("");
-
   const [productActualPrice, setProductActualPrice] = useState("");
-
   const [productDetails, setProductDetails] = useState("");
+  const [quantityType, setQuantityType] = useState("");
+  const [quantity, setQuantity] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleNameChange = (e) => {
@@ -29,6 +29,16 @@ const AddItem = () => {
     setErrorMessage("");
 
     setProductDetails(e.target.value);
+  };
+  const handleQuantityType = (e) => {
+    setErrorMessage("");
+
+    setQuantityType(e.target.value);
+  };
+  const handleQuantity = (e) => {
+    setErrorMessage("");
+
+    setQuantity(e.target.value);
   };
   const OnSubmit = (e) => {
     e.preventDefault();
@@ -84,6 +94,31 @@ const AddItem = () => {
             value={productActualPrice}
             onChange={handleActualPriceChange}
           />
+          <br />
+          <label htmlFor="title">Quantity</label>
+          <div>
+            <input
+              className="border rounded-lg p-2"
+              type="text"
+              name="quantity"
+              id="quantity"
+              value={quantity}
+              onChange={handleQuantity}
+            />
+            <select
+              className="border rounded-lg p-2"
+              type="text"
+              name="quantity"
+              id="quantity"
+              value={quantityType}
+              onChange={handleQuantityType}
+            >
+              <option value="KG">Kilo Gram</option>
+              <option value="G">Gram</option>
+              <option value="MG">Milli Gram</option>
+              <option value="tola">Tola</option>
+            </select>
+          </div>
           <br />
           <label htmlFor="title">Details of The Product:</label>
 
